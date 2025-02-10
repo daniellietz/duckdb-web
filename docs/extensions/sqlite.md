@@ -166,7 +166,7 @@ sqlite> SELECT * FROM tbl;
 ```
 
 ```text
-id  name  
+id  name
 --  ------
 42  DuckDB
 ```
@@ -178,6 +178,16 @@ Many operations on SQLite tables are supported. All these operations directly mo
 DuckDB can read or modify a SQLite database while DuckDB or SQLite reads or modifies the same database from a different thread or a separate process. More than one thread or process can read the SQLite database at the same time, but only a single thread or process can write to the database at one time. Database locking is handled by the SQLite library, not DuckDB. Within the same process, SQLite uses mutexes. When accessed from different processes, SQLite uses file system locks. The locking mechanisms also depend on SQLite configuration, like WAL mode. Refer to the [SQLite documentation on locking](https://www.sqlite.org/lockingv3.html) for more information.
 
 > Warning Linking multiple copies of the SQLite library into the same application can lead to application errors. See [sqlite_scanner Issue #82](https://github.com/duckdb/sqlite_scanner/issues/82) for more information.
+
+
+## Settings
+
+The extension exposes the following configuration parameters.
+
+| Name                              | Description                                                                  | Default |
+| --------------------------------- | ---------------------------------------------------------------------------- | ------- |
+|`sqlite_debug_show_queries`           | DEBUG SETTING: print all queries sent to SQLite to stdout                | `false` |
+
 
 ## Supported Operations
 
